@@ -1,0 +1,10 @@
+/Users/james.kovacic/Downloads/wordrs/target/debug/deps/ecolor-5c1c81e767f52077.d: /Users/james.kovacic/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ecolor-0.33.3/src/lib.rs /Users/james.kovacic/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ecolor-0.33.3/src/color32.rs /Users/james.kovacic/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ecolor-0.33.3/src/hsva_gamma.rs /Users/james.kovacic/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ecolor-0.33.3/src/hsva.rs /Users/james.kovacic/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ecolor-0.33.3/src/rgba.rs /Users/james.kovacic/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ecolor-0.33.3/src/hex_color_runtime.rs
+
+/Users/james.kovacic/Downloads/wordrs/target/debug/deps/libecolor-5c1c81e767f52077.rmeta: /Users/james.kovacic/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ecolor-0.33.3/src/lib.rs /Users/james.kovacic/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ecolor-0.33.3/src/color32.rs /Users/james.kovacic/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ecolor-0.33.3/src/hsva_gamma.rs /Users/james.kovacic/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ecolor-0.33.3/src/hsva.rs /Users/james.kovacic/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ecolor-0.33.3/src/rgba.rs /Users/james.kovacic/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ecolor-0.33.3/src/hex_color_runtime.rs
+
+/Users/james.kovacic/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ecolor-0.33.3/src/lib.rs:
+/Users/james.kovacic/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ecolor-0.33.3/src/color32.rs:
+/Users/james.kovacic/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ecolor-0.33.3/src/hsva_gamma.rs:
+/Users/james.kovacic/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ecolor-0.33.3/src/hsva.rs:
+/Users/james.kovacic/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ecolor-0.33.3/src/rgba.rs:
+/Users/james.kovacic/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ecolor-0.33.3/src/hex_color_runtime.rs:
