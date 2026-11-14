@@ -1,0 +1,43 @@
+[package]
+name = "wordrs"
+version = "0.1.0"
+edition = "2021"
+description = "A Microsoft Word-style word processor written in Rust (egui) with Google Fonts support"
+license = "MIT"
+
+[dependencies]
+eframe = { version = "=0.33.3", default-features = false, features = ["default_fonts", "glow", "x11", "wayland"] }
+image = { version = "0.25", default-features = false, features = ["png", "jpeg", "gif", "bmp", "webp"] }
+ttf-parser = "0.25"
+fontdb = "0.23"
+ureq = { version = "2", features = ["native-certs"] }
+zip = { version = "2", default-features = false, features = ["deflate"] }
+roxmltree = "0.20"
+pdf-writer = "0.12"
+subsetter = "0.2"
+miniz_oxide = "0.8"
+unicode-linebreak = "0.1"
+unicode-segmentation = "1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+dirs = "5"
+regex = "1"
+base64 = "0.22"
+chrono = { version = "0.4", default-features = false, features = ["clock", "std"] }
+
+[target.'cfg(target_os = "linux")'.dependencies]
+rfd = { version = "0.15", default-features = false, features = ["xdg-portal", "async-std"] }
+
+[target.'cfg(not(target_os = "linux"))'.dependencies]
+rfd = "0.15"
+
+[profile.dev]
+opt-level = 1
+
+[profile.dev.package."*"]
+opt-level = 1
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 4
