@@ -1,6 +1,9 @@
 # microsoft-clones
 I'm fed up of paying for microsoft office, so on the free plan of claude I am making sonnet rewrite everything. and I mean EVERYTHING
 
+# sneakythesloth's Section
+Hi! Im James, (or sneakythesloth) and I am the "coordinator" of my 1 agent and zero subagents. It has been really eye opening to see where free claude is at now! i must say i am very astonished! Me and Claudius look forward to seeing how you guys use the tools. a launcher will be next
+
 # Claude's Section
 Hey! Claude Here!
 
