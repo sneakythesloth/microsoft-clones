@@ -701,7 +701,7 @@ impl App {
                 // header/footer editing frame
                 let (y0, y1) = if matches!(kind, StoryKind::Header | StoryKind::FirstHeader) { (0.0, page.top) } else { (page.top + page.content_h, page.setup.h) };
                 let rr = Rect::from_min_max(view.pt(0.0, y0), view.pt(page.setup.w, y1));
-                painter.rect_stroke(rr.shrink(1.0), 0.0, egui::Stroke::new(1.0, Color32::from_rgb(70, 130, 200)), egui::StrokeKind::Inside);
+                painter.rect_stroke(rr.shrink(1.0), 0.0, egui::Stroke::new(1.0_f32, Color32::from_rgb(70, 130, 200)), egui::StrokeKind::Inside);
                 let label = if matches!(kind, StoryKind::Header | StoryKind::FirstHeader) { "Header" } else { "Footer" };
                 painter.text(rr.left_top() + vec2(4.0, 2.0), egui::Align2::LEFT_TOP, label, egui::FontId::proportional(11.0), Color32::from_rgb(70, 130, 200));
             }
@@ -709,10 +709,10 @@ impl App {
             if let (Some((para, off)), true) = (sel_img, kind == StoryKind::Body) {
                 if let Some((ir, _)) = render::image_rect(&page.body, para, off) {
                     let rr = Rect::from_min_max(view.pt(ir.left(), ir.top()), view.pt(ir.right(), ir.bottom()));
-                    painter.rect_stroke(rr, 0.0, egui::Stroke::new(1.5, Color32::from_rgb(40, 110, 220)), egui::StrokeKind::Outside);
+                    painter.rect_stroke(rr, 0.0, egui::Stroke::new(1.5_f32, Color32::from_rgb(40, 110, 220)), egui::StrokeKind::Outside);
                     for c in [rr.left_top(), rr.right_top(), rr.left_bottom(), rr.right_bottom()] {
                         painter.rect_filled(Rect::from_center_size(c, vec2(7.0, 7.0)), 0.0, Color32::WHITE);
-                        painter.rect_stroke(Rect::from_center_size(c, vec2(7.0, 7.0)), 0.0, egui::Stroke::new(1.0, Color32::from_rgb(40, 110, 220)), egui::StrokeKind::Inside);
+                        painter.rect_stroke(Rect::from_center_size(c, vec2(7.0, 7.0)), 0.0, egui::Stroke::new(1.0_f32, Color32::from_rgb(40, 110, 220)), egui::StrokeKind::Inside);
                     }
                 }
             }
@@ -777,7 +777,7 @@ impl App {
             let half = per_label % 2 == 0 && i % (per_label / 2) == 0;
             let len = if major { 7.0 } else if half { 5.0 } else { 3.0 };
             let cy = rect.center().y;
-            painter.line_segment([Pos2::new(x, cy - len * 0.5), Pos2::new(x, cy + len * 0.5)], egui::Stroke::new(1.0, Color32::from_gray(110)));
+            painter.line_segment([Pos2::new(x, cy - len * 0.5), Pos2::new(x, cy + len * 0.5)], egui::Stroke::new(1.0_f32, Color32::from_gray(110)));
             if major && i != 0 {
                 let label = format!("{}", (i / per_label).abs());
                 painter.text(Pos2::new(x, cy), egui::Align2::CENTER_CENTER, label, egui::FontId::proportional(9.0), Color32::from_gray(90));
