@@ -47,7 +47,7 @@ fn lines_icon(p: &Painter, r: Rect, c: Color32, widths: [f32; 4], align: i32) {
             1 => inner.center().x - len / 2.0,
             _ => inner.right() - len,
         };
-        p.line_segment([Pos2::new(x0, y), Pos2::new(x0 + len, y)], Stroke::new(1.5, c));
+        p.line_segment([Pos2::new(x0, y), Pos2::new(x0 + len, y)], Stroke::new(1.5_f32, c));
     }
 }
 
@@ -69,7 +69,7 @@ fn list_icon(p: &Painter, r: Rect, c: Color32, numbered: bool) {
         } else {
             p.circle_filled(Pos2::new(inner.left() + 2.0, y), 1.6, c);
         }
-        p.line_segment([Pos2::new(inner.left() + 7.0, y), Pos2::new(inner.right(), y)], Stroke::new(1.5, c));
+        p.line_segment([Pos2::new(inner.left() + 7.0, y), Pos2::new(inner.right(), y)], Stroke::new(1.5_f32, c));
     }
 }
 
@@ -78,7 +78,7 @@ fn indent_icon(p: &Painter, r: Rect, c: Color32, inc: bool) {
     for i in 0..4 {
         let y = inner.top() + i as f32 * (inner.height() / 3.0);
         let x0 = if (1..3).contains(&i) { inner.left() + 6.0 } else { inner.left() };
-        p.line_segment([Pos2::new(x0, y), Pos2::new(inner.right(), y)], Stroke::new(1.4, c));
+        p.line_segment([Pos2::new(x0, y), Pos2::new(inner.right(), y)], Stroke::new(1.4_f32, c));
     }
     let cy = inner.center().y;
     let x = inner.left() + 1.0;
@@ -89,12 +89,12 @@ fn indent_icon(p: &Painter, r: Rect, c: Color32, inc: bool) {
 fn spacing_icon(p: &Painter, r: Rect, c: Color32) {
     let inner = r.shrink2(vec2(5.0, 4.0));
     let x = inner.left() + 2.5;
-    p.line_segment([Pos2::new(x, inner.top()), Pos2::new(x, inner.bottom())], Stroke::new(1.3, c));
+    p.line_segment([Pos2::new(x, inner.top()), Pos2::new(x, inner.bottom())], Stroke::new(1.3_f32, c));
     p.add(egui::Shape::convex_polygon(vec![Pos2::new(x - 2.5, inner.top() + 3.5), Pos2::new(x + 2.5, inner.top() + 3.5), Pos2::new(x, inner.top())], c, Stroke::NONE));
     p.add(egui::Shape::convex_polygon(vec![Pos2::new(x - 2.5, inner.bottom() - 3.5), Pos2::new(x + 2.5, inner.bottom() - 3.5), Pos2::new(x, inner.bottom())], c, Stroke::NONE));
     for i in 0..3 {
         let y = inner.top() + 1.5 + i as f32 * (inner.height() - 3.0) / 2.0;
-        p.line_segment([Pos2::new(x + 5.0, y), Pos2::new(inner.right(), y)], Stroke::new(1.4, c));
+        p.line_segment([Pos2::new(x + 5.0, y), Pos2::new(inner.right(), y)], Stroke::new(1.4_f32, c));
     }
 }
 
@@ -110,15 +110,15 @@ fn undo_icon(p: &Painter, r: Rect, c: Color32, redo: bool) {
         pts.push(Pos2::new(center.x + s * rad * t.cos(), center.y - rad * t.sin()));
     }
     let end = *pts.last().unwrap();
-    p.add(egui::Shape::line(pts, Stroke::new(1.8, c)));
+    p.add(egui::Shape::line(pts, Stroke::new(1.8_f32, c)));
     p.add(egui::Shape::convex_polygon(vec![Pos2::new(end.x - 3.2, end.y - 0.5), Pos2::new(end.x + 3.2, end.y - 0.5), Pos2::new(end.x, end.y + 4.2)], c, Stroke::NONE));
 }
 
 fn save_icon(p: &Painter, r: Rect, c: Color32) {
     let b = r.shrink(6.0);
-    p.rect_stroke(b, 1.0, Stroke::new(1.4, c), egui::StrokeKind::Inside);
+    p.rect_stroke(b, 1.0, Stroke::new(1.4_f32, c), egui::StrokeKind::Inside);
     p.rect_filled(Rect::from_min_size(b.min + vec2(2.5, 0.0), vec2(b.width() - 5.0, 3.5)), 0.0, c);
-    p.rect_stroke(Rect::from_min_max(b.center() + vec2(-3.0, 0.5), b.max - vec2(2.5, 1.5)), 0.0, Stroke::new(1.2, c), egui::StrokeKind::Inside);
+    p.rect_stroke(Rect::from_min_max(b.center() + vec2(-3.0, 0.5), b.max - vec2(2.5, 1.5)), 0.0, Stroke::new(1.2_f32, c), egui::StrokeKind::Inside);
 }
 
 fn letter_a(p: &Painter, r: Rect, c: Color32, bar: Color32, mark: bool) {
@@ -158,7 +158,7 @@ const HIGHLIGHTS: [Rgb; 15] = [[255, 255, 0], [0, 255, 0], [0, 255, 255], [255, 
 fn swatch(ui: &mut Ui, c: Rgb, tip: &str) -> bool {
     let (r, resp) = ui.allocate_exact_size(vec2(17.0, 17.0), Sense::click());
     ui.painter().rect_filled(r, 1.0, rgb(c));
-    ui.painter().rect_stroke(r, 1.0, Stroke::new(if resp.hovered() { 2.0 } else { 1.0 }, if resp.hovered() { ACCENT } else { Color32::from_gray(170) }), egui::StrokeKind::Inside);
+    ui.painter().rect_stroke(r, 1.0, Stroke::new(if resp.hovered() { 2.0_f32 } else { 1.0_f32 }, if resp.hovered() { ACCENT } else { Color32::from_gray(170) }), egui::StrokeKind::Inside);
     resp.on_hover_text(tip).clicked()
 }
 
@@ -454,7 +454,7 @@ impl App {
                 });
                 if icon_btn(ui, false, "Clear all formatting", vec2(24.0, 24.0), |p, r, c| {
                     p.text(r.center() + vec2(-1.0, 0.0), Align2::CENTER_CENTER, "A", FontId::proportional(14.0), c);
-                    p.line_segment([r.center() + vec2(2.0, 8.0), r.center() + vec2(10.0, -4.0)], Stroke::new(2.0, Color32::from_rgb(200, 60, 60)));
+                    p.line_segment([r.center() + vec2(2.0, 8.0), r.center() + vec2(10.0, -4.0)], Stroke::new(2.0_f32, Color32::from_rgb(200, 60, 60)));
                 })
                 .clicked()
                 {
@@ -581,7 +581,7 @@ impl App {
                 let shade_c = rp.shade.unwrap_or([255, 255, 0]);
                 let sh = icon_btn(ui, false, "Paragraph shading", vec2(26.0, 24.0), |p, r, _c| {
                     p.rect_filled(r.shrink2(vec2(6.0, 6.0)), 1.0, rgb(shade_c));
-                    p.rect_stroke(r.shrink2(vec2(6.0, 6.0)), 1.0, Stroke::new(1.0, Color32::from_gray(90)), egui::StrokeKind::Inside);
+                    p.rect_stroke(r.shrink2(vec2(6.0, 6.0)), 1.0, Stroke::new(1.0_f32, Color32::from_gray(90)), egui::StrokeKind::Inside);
                 });
                 Popup::from_toggle_button_response(&sh).close_behavior(PopupCloseBehavior::CloseOnClickOutside).show(|ui| {
                     if let Some(c) = palette(ui, "No Color", false) {
@@ -590,8 +590,8 @@ impl App {
                 });
                 let bd = icon_btn(ui, false, "Borders", vec2(26.0, 24.0), |p, r, c| {
                     let rr = r.shrink2(vec2(6.0, 6.0));
-                    p.rect_stroke(rr, 0.0, Stroke::new(1.0, c), egui::StrokeKind::Inside);
-                    p.line_segment([rr.left_bottom(), rr.right_bottom()], Stroke::new(2.0, c));
+                    p.rect_stroke(rr, 0.0, Stroke::new(1.0_f32, c), egui::StrokeKind::Inside);
+                    p.line_segment([rr.left_bottom(), rr.right_bottom()], Stroke::new(2.0_f32, c));
                 });
                 Popup::menu(&bd).show(|ui| {
                     let line = Some(Border { w: 0.75, color: [0, 0, 0] });
@@ -735,7 +735,7 @@ impl App {
                     for cc in 0..cols {
                         let rect = Rect::from_min_size(top_left + vec2(cc as f32 * 19.0, rr as f32 * 19.0 + 0.0), vec2(17.0, 17.0));
                         let on = rr < hover.0 && cc < hover.1;
-                        ui.painter().rect_stroke(rect, 0.0, Stroke::new(if on { 2.0 } else { 1.0 }, if on { ACCENT } else { Color32::from_gray(160) }), egui::StrokeKind::Inside);
+                        ui.painter().rect_stroke(rect, 0.0, Stroke::new(if on { 2.0_f32 } else { 1.0_f32 }, if on { ACCENT } else { Color32::from_gray(160) }), egui::StrokeKind::Inside);
                     }
                 }
                 ui.label(if hover.0 > 0 { format!("{} × {} Table", hover.1, hover.0) } else { "Insert Table".to_string() });
