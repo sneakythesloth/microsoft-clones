@@ -92,7 +92,7 @@ fn draw_text(v: &View, text: &str, x: f32, base: f32, size_px: f32, info: &FmtIn
 pub fn paint_page_frame(painter: &Painter, rect: Rect) {
     painter.rect_filled(rect.translate(egui::vec2(3.0, 4.0)).expand(1.0), 0.0, Color32::from_black_alpha(55));
     painter.rect_filled(rect, 0.0, Color32::WHITE);
-    painter.rect_stroke(rect, 0.0, Stroke::new(1.0, Color32::from_gray(175)), egui::StrokeKind::Outside);
+    painter.rect_stroke(rect, 0.0, Stroke::new(1.0_f32, Color32::from_gray(175)), egui::StrokeKind::Outside);
 }
 
 pub fn paint_fills(v: &View, page: &Page) {
@@ -182,7 +182,7 @@ pub fn paint_squiggles(v: &View, lines: &[PlacedLine], spans: &[(usize, usize, u
                 x += step;
             }
             pts.push(Pos2::new(x2, y));
-            v.painter.add(egui::Shape::line(pts, Stroke::new(1.0, Color32::from_rgb(220, 40, 40))));
+            v.painter.add(egui::Shape::line(pts, Stroke::new(1.0_f32, Color32::from_rgb(220, 40, 40))));
         }
     }
 }
@@ -232,7 +232,7 @@ pub fn paint_lines(v: &mut View, lines: &[PlacedLine], dimmed: bool, page_w_pt: 
                         let tint = if dimmed { Color32::from_white_alpha(120) } else { Color32::WHITE };
                         v.painter.image(tid, r, Rect::from_min_max(Pos2::ZERO, Pos2::new(1.0, 1.0)), tint);
                     } else {
-                        v.painter.rect_stroke(r, 0.0, Stroke::new(1.0, Color32::GRAY), egui::StrokeKind::Inside);
+                        v.painter.rect_stroke(r, 0.0, Stroke::new(1.0_f32, Color32::GRAY), egui::StrokeKind::Inside);
                     }
                 }
                 ItemKind::Tab(leader) => {
@@ -248,21 +248,21 @@ pub fn paint_lines(v: &mut View, lines: &[PlacedLine], dimmed: bool, page_w_pt: 
                         Leader::Dashes => {
                             let mut xx = x + 1.0;
                             while xx + 3.0 * s < x + w {
-                                v.painter.line_segment([Pos2::new(xx, base - 0.3 * size_px), Pos2::new(xx + 3.0 * s, base - 0.3 * size_px)], Stroke::new(1.0, color));
+                                v.painter.line_segment([Pos2::new(xx, base - 0.3 * size_px), Pos2::new(xx + 3.0 * s, base - 0.3 * size_px)], Stroke::new(1.0_f32, color));
                                 xx += 5.0 * s;
                             }
                         }
                         Leader::Line => {
-                            v.painter.line_segment([Pos2::new(x, base + 0.5 * s), Pos2::new(x + w, base + 0.5 * s)], Stroke::new(1.0, color));
+                            v.painter.line_segment([Pos2::new(x, base + 0.5 * s), Pos2::new(x + w, base + 0.5 * s)], Stroke::new(1.0_f32, color));
                         }
                         Leader::None => {}
                     }
                     if v.show_marks && w > 6.0 {
                         let y = base - 0.3 * size_px;
                         let c = Color32::from_rgb(90, 130, 190);
-                        v.painter.line_segment([Pos2::new(x + 2.0, y), Pos2::new(x + w - 2.0, y)], Stroke::new(1.0, c));
-                        v.painter.line_segment([Pos2::new(x + w - 2.0, y), Pos2::new(x + w - 5.0, y - 2.5)], Stroke::new(1.0, c));
-                        v.painter.line_segment([Pos2::new(x + w - 2.0, y), Pos2::new(x + w - 5.0, y + 2.5)], Stroke::new(1.0, c));
+                        v.painter.line_segment([Pos2::new(x + 2.0, y), Pos2::new(x + w - 2.0, y)], Stroke::new(1.0_f32, c));
+                        v.painter.line_segment([Pos2::new(x + w - 2.0, y), Pos2::new(x + w - 5.0, y - 2.5)], Stroke::new(1.0_f32, c));
+                        v.painter.line_segment([Pos2::new(x + w - 2.0, y), Pos2::new(x + w - 5.0, y + 2.5)], Stroke::new(1.0_f32, c));
                     }
                 }
                 ItemKind::Space => {
@@ -290,12 +290,12 @@ pub fn paint_lines(v: &mut View, lines: &[PlacedLine], dimmed: bool, page_w_pt: 
                             let mid = (x0 + x1) * 0.5;
                             let mut xx = x0;
                             while xx < mid - gw * 0.5 - 6.0 {
-                                v.painter.line_segment([Pos2::new(xx, y), Pos2::new(xx + 3.0, y)], Stroke::new(1.0, c));
+                                v.painter.line_segment([Pos2::new(xx, y), Pos2::new(xx + 3.0, y)], Stroke::new(1.0_f32, c));
                                 xx += 6.0;
                             }
                             let mut xx = mid + gw * 0.5 + 6.0;
                             while xx < x1 {
-                                v.painter.line_segment([Pos2::new(xx, y), Pos2::new((xx + 3.0).min(x1), y)], Stroke::new(1.0, c));
+                                v.painter.line_segment([Pos2::new(xx, y), Pos2::new((xx + 3.0).min(x1), y)], Stroke::new(1.0_f32, c));
                                 xx += 6.0;
                             }
                             v.painter.galley(Pos2::new(mid - gw * 0.5, y - galley.size().y * 0.5), galley, c);
@@ -303,10 +303,10 @@ pub fn paint_lines(v: &mut View, lines: &[PlacedLine], dimmed: bool, page_w_pt: 
                             // soft line break arrow
                             let y = base - 0.35 * size_px;
                             let a = Pos2::new(x + 1.0, y);
-                            v.painter.line_segment([a, Pos2::new(a.x + 5.0, y)], Stroke::new(1.0, c));
-                            v.painter.line_segment([Pos2::new(a.x + 5.0, y), Pos2::new(a.x + 5.0, y - 5.0)], Stroke::new(1.0, c));
-                            v.painter.line_segment([a, Pos2::new(a.x + 3.0, y - 2.5)], Stroke::new(1.0, c));
-                            v.painter.line_segment([a, Pos2::new(a.x + 3.0, y + 2.5)], Stroke::new(1.0, c));
+                            v.painter.line_segment([a, Pos2::new(a.x + 5.0, y)], Stroke::new(1.0_f32, c));
+                            v.painter.line_segment([Pos2::new(a.x + 5.0, y), Pos2::new(a.x + 5.0, y - 5.0)], Stroke::new(1.0_f32, c));
+                            v.painter.line_segment([a, Pos2::new(a.x + 3.0, y - 2.5)], Stroke::new(1.0_f32, c));
+                            v.painter.line_segment([a, Pos2::new(a.x + 3.0, y + 2.5)], Stroke::new(1.0_f32, c));
                         }
                     }
                 }
